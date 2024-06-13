@@ -10,7 +10,8 @@ function array(arr) {
 function object(obj) {
   const keys = Object.keys(obj)
   const k = array(keys)
-  return array(obj[k])
+
+  return { res: array(obj[k]), from: k }
 }
 
 export { number, array, object }

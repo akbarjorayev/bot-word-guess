@@ -17,10 +17,17 @@ bot.setMyCommands([
 
 bot.onText(/\/new_word/, async (msg) => {
   const chatId = msg.chat.id
-  GAME.guessing.word = RANDOM.object(words)
+
+  const wordObj = RANDOM.object(words)
+
+  GAME.guessing.word = wordObj.res
   GAME.guessing.tries = GAME.guessing.word.length + 2
+  GAME.guessing.description = `Bu so'z *${wordObj.from}* turkumiga mansub`
 
   await bot.sendMessage(chatId, `O'yin boshlandi`)
+  await bot.sendMessage(chatId, GAME.guessing.description, {
+    parse_mode: 'Markdown',
+  })
   await bot.sendMessage(
     chatId,
     `So'zning uzunligi: ${LENGTHEMOJI.lengthWithEmoji(
