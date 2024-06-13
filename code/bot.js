@@ -24,7 +24,10 @@ bot.onText(/\/new_word/, async (msg) => {
 
   GAME.guessing.word = wordObj.res
   GAME.guessing.tries = GAME.guessing.word.length + 2
-  GAME.guessing.description = `Bu so'z *${wordObj.from}* turkumiga mansub`
+  GAME.guessing.description = `Bu so'z *${wordObj.from.replaceAll(
+    '_',
+    ' '
+  )}* turkumiga mansub`
 
   await bot.sendMessage(chatId, `O'yin boshlandi`)
   await bot.sendMessage(chatId, GAME.guessing.description, {
