@@ -1,12 +1,14 @@
 import TelegramBot from 'node-telegram-bot-api'
-import API from './api/api.js'
+import dotenv from 'dotenv'
 import words from './wordList/words.js'
 import * as CHECKER from './word/check.js'
 import * as RANDOM from './utilities/getRandom.js'
 import * as LENGTHEMOJI from './utilities/lengthEmoji.js'
 import * as GAME from './game/game.js'
 
-const bot = new TelegramBot(API.tgBot, { polling: true })
+dotenv.config()
+
+const bot = new TelegramBot(process.env.TELEGRAM_TOKEN, { polling: true })
 
 bot.setMyCommands([
   {
